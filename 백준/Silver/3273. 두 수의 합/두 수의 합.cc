@@ -23,7 +23,7 @@ int main()
 
     for (int i = 1; i <= 1000000; i++)
     {
-        if (x - i > 0 && x - i <= 2000000)
+        if (x - i > 0)
         {
             if (tag[i] && tag[x - i]) 
             {
