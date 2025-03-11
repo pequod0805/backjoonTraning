@@ -65,4 +65,19 @@ insert
 delete
 1. 다음 주소값의 pre값에 지우려는 원소값의 pre값을 대입
 2. 이전 주소값의 nxt값에 지우려는 원소값의 nxt값을 대입
-// 이 방법은 10만번 100만번을 대상으로하는 코딩테스트 문제에서 사용가능(실무에서는 지워진 값에 대한 메모리 관리가 안되기 때문에 사용 불가능)
+// 이 방법은 n = 100,000 ~ 1,000,000번 을 대상으로하는 코딩테스트 문제에서 사용가능
+// 실무에서는 지워진 값에 대한 메모리 관리가 안되기 때문에 사용 불가능
+
+void insert(int addr, int num){
+    dat[unused] = num;
+    pre[unused] = addr;
+    nxt[unused] = nxt[addr];
+    if(nxt[addr] != -1) pre[nxt[addr]] = unused;
+    nxt[addr] = unused;
+    unused++;
+}
+
+void erase(int addr){
+    nxt[pre[addr]] = nxt[addr];
+    if(nxt[addr] != -1)pre[nxt[addr]] = pre[addr];
+}
