@@ -1,36 +1,68 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-bool tag[2000001];
+const int MX = 1000005;
+int dat[MX], pre[MX], nxt[MX];
+int unused = 1;
 
-int main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+void insert(int addr, int num){
+    dat[unused] = num;
+    //cout << "1 \n"; 
+    pre[unused] = addr;
+    //cout << "2 \n";
+    nxt[unused] = nxt[addr];
+    //cout << "3 \n";
+    if(nxt[addr] != -1) pre[nxt[addr]] = unused;
+    //cout << "4 \n";
+    nxt[addr] = unused;
+    //cout << "5 \n";
+    unused++;
+    //cout << "10 \n";
+}
 
-    int n;
-    cin >> n;
-    int tcnum = 0;
-    while(n--){
-        cin >> tcnum;
-        tag[tcnum] = true;
-    }
-    
-    int x;
-    cin >> x;   
-    int sum = 0;
+void erase(int addr){
+    nxt[pre[addr]] = nxt[addr];
+    pre[nxt[addr]] = pre[addr];
+}
 
-    for (int i = 1; i <= (x+1)/2; i++)
-    {
-        if (x - i > 0)
-        {
-            if (tag[i] && tag[x - i]) 
-            {
-                sum++;
-            }
-        }
-    }
-    cout << sum/2;
-    return 0;
+void traverse(){
+  int cur = nxt[0];
+  while(cur != -1){
+    cout << dat[cur] << ' ';
+    cur = nxt[cur];
+  }
+  cout << "\n\n";
+}
+
+void insert_test(){
+  cout << "****** insert_test *****\n";
+  insert(0, 10); // 10(address=1)
+  traverse();
+  insert(0, 30); // 30(address=2) 10
+  traverse();
+  insert(2, 40); // 30 40(address=3) 10
+  traverse();
+  insert(1, 20); // 30 40 10 20(address=4)
+  traverse();
+  insert(4, 70); // 30 40 10 20 70(address=5)
+  traverse();
+}
+
+void erase_test(){
+  cout << "****** erase_test *****\n";
+  erase(1); // 30 40 20 70
+  traverse();
+  erase(2); // 40 20 70
+  traverse();
+  erase(4); // 40 70
+  traverse();
+  erase(5); // 40
+  traverse();
+}
+
+int main(void) {
+  fill(pre, pre+MX, -1);
+  fill(nxt, nxt+MX, -1);
+  insert_test();
+  erase_test();
 }
