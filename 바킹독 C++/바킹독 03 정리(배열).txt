@@ -52,7 +52,7 @@ int main(void) {
   cout << v4[0] << v4[1] << v4[2] << '\n';
   v4.pop_back(); // {1,2}
   v4.clear(); // {}
-
+}
 //push_front, pop_front도 있음
 //push_back, pop_back을 제외하면 모두 O(n)입니다.
 //

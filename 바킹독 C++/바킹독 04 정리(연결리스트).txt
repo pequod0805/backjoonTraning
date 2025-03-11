@@ -68,6 +68,17 @@ delete
 // 이 방법은 n = 100,000 ~ 1,000,000번 을 대상으로하는 코딩테스트 문제에서 사용가능
 // 실무에서는 지워진 값에 대한 메모리 관리가 안되기 때문에 사용 불가능
 
+STL list
+push_front, pop_front, push_back, pop_back 모두 O(1)입니다.
+위의 주소(번지)라는 개념을 iterator을 사용해 구현합니다.
+예제 : LinkExample.cpp
+iterator 선언 [list<int>::iterator T] 대신 [auto T] 사용 가능 C++11 이상.
+다만 list<char>::iterator를 사용할 때는 주소값만을 보기 때문에 노드의 값 출력시 *iterator를 사용해야 하지만
+for(auto a : list)는 char객체를 직접 보기 때문에 cout << a;로 해야 됩니다. 
+
+for(auto t : L) list의 for( : ) 사용
+for(int e : arr) 배열이 for( : ) 사용
+
 #include <bits/stdc++.h>
 using namespace std;
 

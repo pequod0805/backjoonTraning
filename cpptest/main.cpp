@@ -25,7 +25,7 @@ int main(){
         string str;
         cin >> str;
 
-        list<char> l = {};//{}추가
+        list<char> l = {};//= {} 추가, 하지만 = {}없이 선언해도 길이가 0이라 문제없을 듯?
         auto it = l.begin();
         
         for(char c : str){
@@ -34,7 +34,7 @@ int main(){
             else if(c == '-'){
                 if(it!=l.begin()){
                     it--;
-                    it = l.erase(it); // [it =]가 추가됨...왜지?
+                    it = l.erase(it); // [it =]가 추가됨...왜지? << 이거 때문인 것 같은데
                 }
             }
             else{l.insert(it,c);}
