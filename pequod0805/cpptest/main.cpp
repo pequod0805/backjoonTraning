@@ -16,7 +16,7 @@ int main()
         cin >> tcnum;
         tag[tcnum] = true;
     }
-    // updated
+    
     int x;
     cin >> x;   
     int sum = 0;
