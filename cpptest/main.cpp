@@ -28,16 +28,18 @@ int main() {
     for (int i = 0; i < k; i++) {
         int a;
         cin >> a;
-        //입력된 값이 더 크다면 가장 큰 값'num'에 추가되는 값만큼 push하면서 +입력
+        //입력된 값이 더 크다면 가장 큰 값'num'에서 
+        //압력된 값만큼 '++'연산하며 numr값을 S.에 push하고 expush에 +입력
         while (num <= a) {
             S.push(num++);
             expush('+');
         }
         //비어있지 않고 스택의 최대 값이 a라면 없애면서 -추가 
-        if (!S.empty() && S.top() == a) {
+        if (!S.empty() && S.top() == a) {//empty는 스택이 비어있다면 1, 아니라면 0을 반환. 
+            //top의 값이 a와 같다면 == 다음에 입력받는 값이 입력되는 값이라면 
             S.pop();
-            expush('-');
-        } else {//이외의 한가지 경우 NO출력 후 종료
+            expush('-');//pop하고 '-'푸시
+        } else {//이외의 경우(a<num)라면 NO출력 후 종료
             cout << "NO\n";
             return 0;
         }
