@@ -1,7 +1,3 @@
-// Authored by : unluckyjung
-// Co-authored by : BaaaaaaaaaaarkingDog
-// http://boj.kr/a84f083cdee3436f9f46acdef175e55f
-
 #include <bits/stdc++.h>
 using namespace std;
 

@@ -1,24 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-stack<int> building;
+stack<pair<int,int>> NGE; //first : value, second : address
+int ans[1000005];
 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-
-    int n;
+    ios::sync_with_stdio();
+    cin.tie();
+    
+    int n, k;
     cin >> n;
 
-    long long ans = 0;
-    int height;
-    for(int i=0;i<n;i++){
-        cin >> height;
-        while(!building.empty()&&building.top() <= height)building.pop();//내림차순으로 정리 (10, 3, 7)같이 중간에 낀 빌딩을 제외
-        ans += building.size();//나를 볼 수 있는 빌딩의 수
-        building.push(height);
-    }
-    cout << ans << " ";
+    for(int i=0;i<=n;i++){
 
-    return 0;
+        if(i==n)k=1000001;
+        else cin >> k;
+        
+        while(!NGE.empty() && NGE.top().first < k){
+            ans[NGE.top().second] = k;
+            NGE.pop();
+        }
+        NGE.push({k,i});
+    }
+    for(int i=0; i<n;i++){
+        if(ans[i]==1000001) cout << "-1 ";
+        else cout<<ans[i]<<" ";
+    }
 }
