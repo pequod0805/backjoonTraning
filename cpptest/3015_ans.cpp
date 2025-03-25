@@ -16,7 +16,7 @@ int main(void) {
   while (n--) {
     int h;
     cin >> h;
-    int cnt = 1;// cnt면 count인데...왜 1부터 시작이지
+    int cnt = 1;// 다음 사람이 
     while (!S.empty() && S.top().X <= h) {//Stack S가 비어있지 않고 && top의 X(키)값이 입력받은 h보다 작거나 같다면
       ans += S.top().Y; // top의 Y값(Y가 뭐지)를 ans에 +=로 입력(더한다)
       if (S.top().X == h) cnt += S.top().Y;// 그런데 이때 top의 X값과 입력된 h의 값이 같다면 top의 Y값을 cnt에 더한다.
