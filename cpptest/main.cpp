@@ -4,6 +4,13 @@ using namespace std;
 //stack<pair<int,int>> dwarf;
 stack<int> dwarf;
 
+// void showstack(stack<int> k){
+//     int num = k.size();
+//     while(num--){
+        
+//     }
+// }
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -17,14 +24,24 @@ int main(){
 
     int n,k;
     cin >> n;
-    int ans = 0;
+    long long ans = 0;
     while(n--){
         cin >> k;
-        int cnt = 1;
+        //int cnt = 1;
+        //ans++;
+        //ans = dwarf.size() + ans;
         while(!dwarf.empty()&&dwarf.top()<k){
+            //cout << dwarf.top() << " whill be pop \n"; 
             dwarf.pop();
-            cnt++;
-        }
-        ans = dwarf.size() + cnt + ans;
+            ans++;
+        }   
+        //cout << "k : " << k << ", dwarf.size() : " << dwarf.size() << " + cnt : " << cnt << " + ans : " << ans << "\n";
+        //cout << "k : " << k << ", dwarf.size() : " << dwarf.size() << " + ans : " << ans << "\n";
+        //ans = dwarf.size() + cnt + ans;
+        ans = dwarf.size() + ans;
+        //cout << "so, the ans is : " << ans << "\n";
+        
+        dwarf.push(k);
     }
+    cout << "ans : " << ans << "\n";
 }
