@@ -1,46 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//stack<pair<int,int>> dwarf;
-stack<int> dwarf;
-
-// void showstack(stack<int> k){
-//     int num = k.size();
-//     while(num--){
-//     }
-// }
+stack<pair<int,int>> dwarf;
 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-
-    //문제는 이전 문제들과 동일하게 A와 B지점 사이에 더 큰수가 있으면 안되고, 더 작은 수는 무시한다...로 보면 된다
-    //즉 다시 말해 큰수 C 가 있으면 그 뒤는 안바도 된다. 말그대로 이전에 풀었던 다른 문제들과 동일하게
-    //내림차순으로 정히라면된다...
-
-    //다만 추가된 점은 그 사이에 동일한 값이 연속해서 나올 때. 예를 들면, 3 1 2 2 2 2 1이라고 치면
-    //이전의 값들은 같은 수는 안치기 때문에....아니 근데 그냥 <=로 해버리면 안되나
-
+    ios::sync_with_stdio();
+    cin.tie();
+    
     int n,k;
     cin >> n;
-    long long ans = 0;
+
+    int ans = 0;
     while(n--){
+        int sameheight = 1;
         cin >> k;
-        //int cnt = 1;
-        //ans++;
-        //ans = dwarf.size() + ans;
-        while(!dwarf.empty()&&dwarf.top()<k){
-            //cout << dwarf.top() << " whill be pop \n"; 
-            dwarf.pop();
-            ans++;
-        }   
-        //cout << "k : " << k << ", dwarf.size() : " << dwarf.size() << " + cnt : " << cnt << " + ans : " << ans << "\n";
-        //cout << "k : " << k << ", dwarf.size() : " << dwarf.size() << " + ans : " << ans << "\n";
-        //ans = dwarf.size() + cnt + ans;
-        ans = dwarf.size() + ans;
-        //cout << "so, the ans is : " << ans << "\n";
+        while(!dwarf.empty()){
+            if(dwarf.top().first == k){
+                sameheight = sameheight + dwarf.top().second;
+                dwarf.pop();//pop하고 몇개나 같은 수가 있는지 확인해서 second에 저장해야함
+            }else if(dwarf.top().first > k){
+                //큰수를 만난다면 사이의 값들은 모두 처리가 끝났을 것이고
+                //별로 
+                break;
+            }else{//dwarf.top().first < k
+                ans = ans + dwarf.top().second;//이부분 수정 필요 단순 Ans++가 아닌 연속한 갯수를 가져와 Ans에 추가해야함 즉 이전 원소의 Second값을 가져와서 ans에 추가해야함
+                dwarf.pop();//작은 수 count...하지만 작은수가 연속해 있는 경우가 부족
+            }
+        }
+        dwarf.push({k,sameheight});//pair에 push 할 때엔 { }를 통해 first와 second 값을 입력해야 한다.
         
-        dwarf.push(k);
+        //정리할 수 있을지 고민...모든 작업은 공통적으로 ans에 sameheight값을 입력해야 함
     }
-    cout << "ans : " << ans << "\n";
+    cout << "\n" ;
+    return 0;
 }
