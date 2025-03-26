@@ -7,7 +7,6 @@ stack<int> dwarf;
 // void showstack(stack<int> k){
 //     int num = k.size();
 //     while(num--){
-        
 //     }
 // }
 
