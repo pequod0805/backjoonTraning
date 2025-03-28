@@ -11,8 +11,10 @@ int main(void) {
   cin >> n;
   stack<pair<int, int>> S;
   
-  long long ans = 0;// 500,000개의 n이 서로 바라본다면 n^2만으로 250,000,000,000...
+  long long ans = 0;// 500,000개의 n이 서로 바라본다면 n^2만으로 250,000,000,000... 2500개?
   
+  //애초에 크다는 조건은 보지 않음
+  //cnt가 1인 상태로 push 되는데, cnt : 보는 갯수
   while (n--) {
     int h;
     cin >> h;
